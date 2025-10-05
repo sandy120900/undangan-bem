@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Foto Bersama BEM FT</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            max-width: 600px;
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            animation: fadeIn 0.8s ease;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: white;
+            border-radius: 50% 50% 0 0;
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: bold;
+            color: #667eea;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .logo-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+        
+        .logo-text {
+            position: absolute;
+            z-index: 1;
+        }
+        
+        .logo-upload-btn {
+            position: absolute;
+            bottom: -5px;
+            right: -5px;
+            background: #667eea;
+            color: white;
+            border: 3px solid white;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            z-index: 2;
+        }
+        
+        .logo-upload-btn:hover {
+            background: #764ba2;
+            transform: scale(1.1);
+        }
+        
+        .logo-input {
+            display: none;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .header p {
+            font-size: 16px;
+            opacity: 0.95;
+        }
+        
+        .content {
+            padding: 40px 30px;
+        }
+        
+        .greeting {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        
+        .info-box {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-left: 4px solid #667eea;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 10px;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        .info-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .info-icon {
+            width: 24px;
+            height: 24px;
+            background: #667eea;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .info-text {
+            flex: 1;
+            color: #333;
+        }
+        
+        .info-label {
+            font-weight: bold;
+            color: #667eea;
+            display: block;
+            margin-bottom: 3px;
+        }
+        
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 25px 0;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #856404;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px 30px 30px;
+            color: #666;
+            font-size: 14px;
+            border-top: 1px solid #eee;
+        }
+        
+        .signature {
+            margin-top: 30px;
+            font-style: italic;
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .camera-icon {
+            font-size: 50px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .upload-section {
+            background: #f8f9fa;
+            border: 2px dashed #667eea;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 25px 0;
+            text-align: center;
+        }
+        
+        .upload-label {
+            display: block;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .upload-label:hover {
+            transform: scale(1.02);
+        }
+        
+        .file-input {
+            display: none;
+        }
+        
+        .upload-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            display: inline-block;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .upload-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .preview-container {
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .preview-image {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            margin-top: 15px;
+        }
+        
+        .file-name {
+            color: #667eea;
+            font-weight: bold;
+            margin-top: 10px;
+            word-break: break-all;
+        }
+        
+        .remove-btn {
+            background: #dc3545;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            border: none;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .remove-btn:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo" id="logoContainer">
+                <span class="logo-text" id="logoText">BEM</span>
+                <img id="logoImage" class="logo-image" alt="Logo BEM">
+                <label for="logoInput" class="logo-upload-btn" title="Upload Logo">
+                    
+                </label>
+                <input type="file" id="logoInput" class="logo-input" accept="image/*WhatsApp Image 2025-09-28 at 20.31.05.jpeg">
+            </div>
+            <h1>UNDANGAN RESMI</h1>
+            <p>Foto Bersama Keluarga Besar BEM</p>
+        </div>
+        
+        <div class="content">
+            <div class="greeting">
+                Kepada Yth.<br>
+                <strong>Seluruh Dosen Fakultas Teknik & Anggota BEM Fakultas Teknik</strong><br>
+                Di tempat
+            </div>
+            
+            <p style="margin-bottom: 20px; line-height: 1.8; color: #555;">
+                Dengan hormat,<br><br>
+                Dalam rangka Foto Bersama untuk membuat Struktur Organisasi
+                sekaligus mendokumentasikan momen kebersamaan kita sebagai keluarga besar BEM Fakultas Teknik, kami mengundang Saudara/i untuk hadir dalam kegiatan ini
+            </p>
+            
+            <div class="camera-icon">📸</div>
+            
+            <div class="upload-section">
+                <h3 style="color: #667eea; margin-bottom: 15px;">📤 Upload Foto/Desain Tambahan</h3>
+                <p style="color: #666; margin-bottom: 15px; font-size: 14px;">
+                    Anda dapat menambahkan foto atau desain pendukung untuk undangan ini
+                </p>
+                <label for="fileInput" class="upload-label">
+                    <div class="upload-btn">
+                        ➕ Pilih File Foto
+                    </div>
+                </label>
+                <input type="file" id="fileInput" class="file-input" accept="image/*">
+                
+                <div id="previewContainer" class="preview-container">
+                    <div class="file-name" id="fileName"></div>
+                    <img id="previewImage" class="preview-image" alt="Preview">
+                    <br>
+                    <button class="remove-btn" id="removeBtn">🗑️ Hapus Foto</button>
+                </div>
+            </div>
+            
+            <div class="info-box">
+                <div class="info-item">
+                    <div class="info-icon">📅</div>
+                    <div class="info-text">
+                        <span class="info-label">Hari/Tanggal</span>
+                        06 Oktober 2025
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">⏰</div>
+                    <div class="info-text">
+                        <span class="info-label">Waktu</span>
+                        14.00-selesai WITA
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">📍</div>
+                    <div class="info-text">
+                        <span class="info-label">Tempat</span>
+                        Aula lt 4 Unpi Manado
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">👔</div>
+                    <div class="info-text">
+                        <span class="info-label">Dress Code</span>
+                        Isi dress code: Kemeja Putih & Celana Hitam & Almamater
+                    </div>
+                </div>
+            </div>
+            
+            <div class="note">
+                <strong>⚠️ Catatan Penting:</strong><br>
+                • Harap hadir tepat waktu<br>
+                • Dress code wajib dipatuhi<br>
+                • Konfirmasi kehadiran maksimal H-2<br>
+                • Membawa atribut BEM Almamater
+            </div>
+            
+            <p style="margin-top: 25px; line-height: 1.8; color: #555;">
+                Kehadiran Saudara/i sangat kami harapkan. Atas perhatian dan kerjasamanya, kami ucapkan terima kasih.
+            </p>
+            
+            <div class="signature">
+                Hormat kami,<br>
+                Pengurus BEM Fakultas Teknik<br>
+                Periode 2025/2026
+            </div>
+        </div>
+        
+        <div class="footer">
+            Mari kita abadikan momen kebersamaan kita! 💙<br>
+            <small>Satu untuk semua, semua untuk fakultas</small>
+        </div>
+    </div>
+    
+    <script>
+        // Upload logo
+        const logoInput = document.getElementById('logoInput');
+        const logoImage = document.getElementById('logoImage');
+        const logoText = document.getElementById('logoText');
+        
+        logoInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            
+            if (file) {
+                // Validasi tipe file
+                if (!file.type.startsWith('image/')) {
+                    alert('⚠️ Harap pilih file gambar (JPG, PNG, GIF, dll)');
+                    return;
+                }
+                
+                // Validasi ukuran file (maksimal 2MB untuk logo)
+                if (file.size > 2 * 1024 * 1024) {
+                    alert('⚠️ Ukuran file terlalu besar! Maksimal 2MB untuk logo');
+                    return;
+                }
+                
+                // Baca dan tampilkan logo
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    logoImage.src = e.target.result;
+                    logoImage.style.display = 'block';
+                    logoText.style.display = 'none';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // Upload foto tambahan
+        const fileInput = document.getElementById('fileInput');
+        const previewContainer = document.getElementById('previewContainer');
+        const previewImage = document.getElementById('previewImage');
+        const fileName = document.getElementById('fileName');
+        const removeBtn = document.getElementById('removeBtn');
+        
+        fileInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            
+            if (file) {
+                // Validasi tipe file
+                if (!file.type.startsWith('image/')) {
+                    alert('⚠️ Harap pilih file gambar (JPG, PNG, GIF, dll)');
+                    return;
+                }
+                
+                // Validasi ukuran file (maksimal 5MB)
+                if (file.size > 5 * 1024 * 1024) {
+                    alert('⚠️ Ukuran file terlalu besar! Maksimal 5MB');
+                    return;
+                }
+                
+                // Tampilkan nama file
+                fileName.textContent = '📄 ' + file.name;
+                
+                // Baca dan tampilkan preview
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImage.src = e.target.result;
+                    previewContainer.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        removeBtn.addEventListener('click', function() {
+            fileInput.value = '';
+            previewImage.src = '';
+            fileName.textContent = '';
+            previewContainer.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
